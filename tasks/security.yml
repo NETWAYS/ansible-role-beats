@@ -25,4 +25,3 @@
   register: beats_writer_password
   changed_when: false
   delegate_to: "{{ elasticsearch_ca }}"
-
