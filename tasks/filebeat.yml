@@ -17,6 +17,7 @@
   args:
     creates: "/etc/filebeat/modules.d/{{ item }}.yml"
   with_items: "{{ filebeat_modules }}"
+  when: filebeat_modules is defined
 - name: Enable Ingest Pipelines
   command: >
     "filebeat setup --pipelines --modules {{ item }} &&
@@ -26,3 +27,4 @@
   notify:
     - Restart Filebeat
   with_items: "{{ filebeat_modules }}"
+  when: filebeat_modules is defined
