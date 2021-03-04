@@ -10,7 +10,9 @@
   fetch: src=/usr/share/elasticsearch/{{ ansible_hostname }}.p12 dest=/tmp/ flat=yes
   delegate_to: "{{ elasticsearch_ca }}"
 - name: Copy the certificate to actual node
-  copy: src=/tmp/{{ ansible_hostname }}.p12 dest=/etc/beats/certs
+  copy:
+    src: /tmp/{{ ansible_hostname }}.p12
+    dest: /etc/beats/certs
     owner: root
     group: root
     mode: 0700
