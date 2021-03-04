@@ -18,7 +18,7 @@ filebeat.inputs:
   host: "0.0.0.0:514"
 
 {% endif %}
-{% if syslog_udp | bool %}
+{% if filebeat_syslog_udp | bool %}
 - type: udp
   enabled: true
   max_message_size: 10MiB
