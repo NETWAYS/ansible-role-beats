@@ -21,9 +21,6 @@
       service:
         name: rsyslog
         state: started
-    - name: "Include Filebeat"
-      include_role:
-        name: filebeat
     - name: "Include Elasticsearch role"
       include_role:
         name: elasticsearch
@@ -33,6 +30,9 @@
     - name: "Include Logstash"
       include_role:
         name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
+    - name: "Include Filebeat"
+      include_role:
+        name: filebeat
     - name: Configure rsyslog
       lineinfile:
         line: "*.* @@localhost:514"
