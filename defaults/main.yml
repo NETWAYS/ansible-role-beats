@@ -3,6 +3,12 @@
 beats_filebeat: true
 beats_output: logstash
 beats_target_hosts: localhost
+
 #filebeat_modules:
 #  - system
+
 elasticsearch_http_security: false
+
+elastic_ca_dir: /opt/es-ca
+elastic_ca_pass: PleaseChangeMe
+elastic_initial_passwords: /usr/share/elasticsearch/initial_passwords
