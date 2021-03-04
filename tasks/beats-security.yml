@@ -68,7 +68,6 @@
 
 - name: fetch Beats password
   shell: >
-    set -o pipefail &&
     grep "PASSWORD elastic" {{ elastic_initial_passwords }} |
     awk {' print $4 '}
   register: beats_writer_password
