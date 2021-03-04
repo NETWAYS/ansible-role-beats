@@ -8,7 +8,6 @@ filebeat.inputs:
 {% for path in filebeat_log_inputs[input].paths %}
     - {{ path }}
 {% endfor %}
-{% endif %}
 
 {% endfor %}
 {% endif %}
