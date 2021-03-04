@@ -3,4 +3,7 @@
 beats_filebeat: true
 filebeat_modules:
   - system
+
+elastic_ca_dir: /opt/es-ca
+elastic_ca_pass: PleaseChangeMe
 elastic_initial_passwords: /usr/share/elasticsearch/initial_passwords
