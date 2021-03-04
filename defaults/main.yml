@@ -3,3 +3,4 @@
 beats_filebeat: true
 filebeat_modules:
   - system
+elastic_initial_passwords: /usr/share/elasticsearch/initial_passwords
