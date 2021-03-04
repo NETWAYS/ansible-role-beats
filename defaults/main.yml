@@ -1,8 +1,11 @@
 ---
 # defaults file for beats
 beats_filebeat: true
-filebeat_modules:
-  - system
+
+#filebeat_modules:
+#  - system
+
+elasticsearch_http_security: false
 
 elastic_ca_dir: /opt/es-ca
 elastic_ca_pass: PleaseChangeMe
