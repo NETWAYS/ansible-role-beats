@@ -7,6 +7,7 @@ beats_target_hosts: localhost
 #filebeat_modules:
 #  - system
 
+elastic_stack_full_stack: false
 elasticsearch_http_security: false
 
 elastic_ca_dir: /opt/es-ca
