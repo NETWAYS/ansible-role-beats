@@ -13,7 +13,12 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+* *beats_output*: Set to `logstash` or `elasticsearch`. (default: `logstash`)
+* *beats_target_hosts*: Only use when this role is used standalone. When used in combination with our other roles, the target hosts will be determined automatically. (default: `localhost`)
+
+The following variables only apply if you use this role together with our other Elastic Stack roles.
+
+* *elastic_stack_full_stack*: Use `ansible-role-elasticsearch` as well (default: `false`)
 
 Dependencies
 ------------

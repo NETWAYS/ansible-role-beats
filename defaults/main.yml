@@ -1,6 +1,8 @@
 ---
 # defaults file for beats
 beats_filebeat: true
+beats_output: logstash
+beats_target_hosts: localhost
 #filebeat_modules:
 #  - system
 elasticsearch_http_security: false
