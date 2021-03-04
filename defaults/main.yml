@@ -3,4 +3,4 @@
 beats_filebeat: true
 filebeat_modules:
   - system
-elasticsearch_http_security: true
+elasticsearch_http_security: false

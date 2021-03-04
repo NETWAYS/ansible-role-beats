@@ -9,6 +9,7 @@
     logstash_enable: true
     logstash_security: true
     elastic_stack_full_stack: true
+    elasticsearch_http_security: true
   tasks:
     - name: "Include Elastics repos role"
       include_role:
