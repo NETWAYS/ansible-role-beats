@@ -29,10 +29,10 @@
         name: geerlingguy.redis
     - name: "Include Logstash"
       include_role:
-        name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
-    - name: "Include Filebeat"
+        name: logstash
+    - name: "Include Beats"
       include_role:
-        name: filebeat
+        name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
     - name: Configure rsyslog
       lineinfile:
         line: "*.* @@localhost:514"
