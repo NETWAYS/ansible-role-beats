@@ -30,8 +30,8 @@ Default of `filebeat_log_inputs`
       - /var/log/messages
 ```
 
-* *beats_output*: Set to `logstash` or `elasticsearch`. (default: `logstash`)
-* *beats_target_hosts*: Only use when this role is used standalone. When used in combination with our other roles, the target hosts will be determined automatically. (default: `localhost`)
+* *filebeat_output*: Set to `logstash` or `elasticsearch`. (default: `logstash`)
+* *filebeat_target_hosts*: Only use when this role is used standalone. When used in combination with our other roles, the target hosts will be determined automatically. (default: `localhost`)
 
 The following variables only apply if you use this role together with our other Elastic Stack roles.
 
