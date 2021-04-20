@@ -14,6 +14,8 @@ filebeat_log_inputs:
     name: messages
     paths:
       - /var/log/messages
+filebeat_logstash_output_port: 5044
+filebeat_elasticsearch_output_port: 9200
 
 
 #filebeat_modules:

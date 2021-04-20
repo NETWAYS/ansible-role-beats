@@ -21,6 +21,8 @@ Role Variables
 * *filebeat_syslog_tcp_port*: Port of TCP Syslog input (Default: `514`)
 * *filebeat_log_input*: Enable Logfile reading (Default: `true`)
 * *filebeat_log_inputs*: Logfiles to read (Default: see below)
+* *filebeat_elasticsearch_output_port*: Port of Elasticsearch to send events to (Default: `9200`)
+* *filebeat_logstash_output_port*: Port of Logstash to send events to (Default: `5400`)
 
 Default of `filebeat_log_inputs`
 ```
