@@ -19,6 +19,10 @@ filebeat.inputs:
   multiline.pattern: '^\#[[:space:]]Time'
   multiline.negate: true
   multiline.match: after
+  fields:
+    mysql:
+      logtype: slowquery
+  fields_under_root: true
 {% endif %}
 {% if filebeat_syslog_tcp | bool %}
 - type: tcp
