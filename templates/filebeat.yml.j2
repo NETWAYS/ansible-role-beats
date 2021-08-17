@@ -61,8 +61,8 @@ output.logstash:
 {% endif %}
 {% if beats_tls | bool %}
   ssl.enabled: true
-  ssl.verification_mode: full
   ssl.certificate_authorities: ["{{ beats_tls_cacert }}"]
+  ssl.verification_mode: full
   ssl.key: {{ beats_tls_key }}
   ssl.key_passphrase: {{ beats_tls_key_passphrase }}
   ssl.certificate: {{ beats_tls_cert }}
