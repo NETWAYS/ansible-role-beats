@@ -1,28 +1,28 @@
-Filebeat
+Beats
 =========
 
 [![CI](https://github.com/widhalmt/ansible-role-beats/workflows/Molecule%20Test/badge.svg?event=push)](https://github.com/widhalmt/ansible-role-beats/workflows/Molecule%20Test/badge.svg)
 
-This role installs and configures Filebeat.
+This role installs and configures Beats.
 
 *WARNING*: This is a very, very early prototype only usable for a very specific environment. **DO NOT USE IN PRODUCTION**
 
 Requirements
 ------------
 
-You need to have Filebeat available in your software repositories. We provide a role for just that but if you have other ways of managing software, just make sure it's available. Alternatively you can install Filebeat yourself.
+You need to have Beats available in your software repositories. We provide a role for just that but if you have other ways of managing software, just make sure it's available. Alternatively you can install Beats yourself.
 
 Role Variables
 --------------
 
-* *filebeat_syslog_udp*: Use UDP Syslog input (Default: `false`)
-* *filebeat_syslog_udp_port*: Port of UDP Syslog input (Default: `514`)
-* *filebeat_syslog_tcp*: Use TCP Syslog input (Default: `false`)
-* *filebeat_syslog_tcp_port*: Port of TCP Syslog input (Default: `514`)
-* *filebeat_log_input*: Enable Logfile reading (Default: `true`)
-* *filebeat_log_inputs*: Logfiles to read (Default: see below)
+* *Beats_syslog_udp*: Use UDP Syslog input (Default: `false`)
+* *Beats_syslog_udp_port*: Port of UDP Syslog input (Default: `514`)
+* *Beats_syslog_tcp*: Use TCP Syslog input (Default: `false`)
+* *Beats_syslog_tcp_port*: Port of TCP Syslog input (Default: `514`)
+* *Beats_log_input*: Enable Logfile reading (Default: `true`)
+* *Beats_log_inputs*: Logfiles to read (Default: see below)
 
-Default of `filebeat_log_inputs`
+Default of `Beats_log_inputs`
 ```
   messages:
     name: messages
