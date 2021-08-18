@@ -21,6 +21,7 @@ filebeat_log_inputs:
     paths:
       - /var/log/messages
 
+filebeat_mysql_slowlog_input: false
 
 #filebeat_modules:
 #  - system
