@@ -36,4 +36,4 @@
     name: filebeat
     state: started
     enable: true
-  when: filebeat_enabled | bool
+  when: filebeat_enable | bool

@@ -5,4 +5,4 @@
   service:
     name: filebeat
     state: restarted
-  when: filebeat_enabled | bool
+  when: filebeat_enable | bool
