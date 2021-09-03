@@ -1,37 +1,12 @@
-filebeat.inputs:
-
-{% if filebeat_log_input | bool %}
-{% for input in filebeat_log_inputs %}
-- type: log
-  enabled: true
-  paths:
-{% for path in filebeat_log_inputs[input].paths %}
-    - {{ path }}
-{% endfor %}
-
-{% endfor %}
-{% endif %}
-{% if filebeat_syslog_tcp | bool %}
-- type: tcp
-  enabled: true
-  max_message_size: 10MiB
-  host: "0.0.0.0:514"
-
-{% endif %}
-{% if filebeat_syslog_udp | bool %}
-- type: udp
-  enabled: true
-  max_message_size: 10MiB
-  host: "0.0.0.0:514"
-
-{% endif %}
-filebeat.config.modules:
+---
+metricbeat.config.modules:
   path: ${path.config}/modules.d/*.yml
   reload.enabled: false
+
 setup.template.settings:
   index.number_of_shards: 1
 setup.kibana:
-{% if beats_output == "elasticsearch" %}
+{% if metricbeat_output == "elasticsearch" %}
 output.elasticsearch:
 {% if elasticsearch_http_security | bool %}
 {% if elastic_stack_full_stack | bool %}
@@ -52,7 +27,7 @@ output.elasticsearch:
 {% endif %}
 {% endif %}
 {% endif %}
-{% if beats_output == "logstash" %}
+{% if metricbeat_output == "logstash" %}
 output.logstash:
 {% if elastic_stack_full_stack | bool %}
   hosts: [ {% for host in groups['logstash'] %}"{{ host }}:{{ beats_logstash_output_port }}"{% if not loop.last %},{% endif %}{% endfor %}]
@@ -73,8 +48,8 @@ output.logstash:
 logging.level: {{ beats_loglevel }}
 logging.to_files: true
 logging.files:
-  path: {{ beats_logpath }}/filebeat.log
-  name: filebeat
+  path: {{ beats_logpath }}/metricbeat.log
+  name: metricbeat
   keepfiles: 7
   permissions: 0644
 {% endif %}
