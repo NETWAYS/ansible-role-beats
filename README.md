@@ -15,6 +15,10 @@ You need to have Filebeat available in your software repositories. We provide a 
 Role Variables
 --------------
 
+* *beats_agent*: Use Elastic Agent (Default: `false`)
+* *beats_fleet_token*: If you're not using `elastic_stack_full_stack` you have to set this to your Fleet server token when using `beats_agent`
+* *beats_fleet_server*: The inventory hostname (and DNS resolvable name) of the fleet server for this host
+
 * *filebeat_enable*: Automatically start Filebeat (Default: `true`)
 * *filebeat_output*: Set to `logstash` or `elasticsearch`. (default: `logstash`)
 * *filebeat_syslog_udp*: Use UDP Syslog input (Default: `false`)

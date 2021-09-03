@@ -1,5 +1,6 @@
 ---
 # defaults file for beats
+beats_agent: false
 beats_filebeat: true
 filebeat_output: logstash
 beats_target_hosts:
@@ -36,6 +37,8 @@ filebeat_enable: true
 
 #filebeat_modules:
 #  - system
+
+beats_fleet_token_name: fleettoken
 
 elastic_stack_full_stack: false
 elasticsearch_http_security: false

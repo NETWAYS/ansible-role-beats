@@ -1,0 +1,61 @@
+---
+
+- name: Check for requirements
+  fail:
+    msg: "Needs Token or full stack roles"
+  when:
+    - not elastic_stack_full_stack | bool
+    - beats_fleet_token is undefined
+
+- name: Install Elastic Agent
+  package:
+    name: elastic-agent
+
+- name: Generate Fleet Token
+  block:
+
+    - name: Generate Token
+      shell: >
+        /usr/share/elasticsearch/bin/elasticsearch-service-tokens
+        create
+        elastic/fleet-server
+        {{ beats_fleet_token_name }} >
+        /usr/share/elasticsearch/token-{{ beats_fleet_token_name }}
+      args:
+        creates: "/usr/share/elasticsearch/token-{{ beats_fleet_token_name }}"
+
+    - name: Secure access to token
+      file:
+        path: /usr/share/elasticsearch/token-{{ beats_fleet_token_name }}
+        owner: root
+        group: root
+        mode: 0600
+
+    - name: Read token
+      shell: >
+        grep ^SERVICE_TOKEN
+        /usr/share/elasticsearch/token-{{ beats_fleet_token_name }} |
+        cut -d= -f2
+      changed_when: false
+      register: read_token
+
+    - name: Use token as fact
+      set_fact:
+        beats_fleet_token: "{{ read_token.stdout }}"
+
+  when: elastic_stack_full_stack | bool
+  delegate_to: "{{ elasticsearch_ca }}"
+
+- name: Setup fleet server
+  block:
+
+    - name: Run fleet server setup
+      command: >
+        elastic-agent
+        enroll
+        --insecure
+        "--fleet-server-service-token={{ beats_fleet_token }}"
+        --fleet-server-es-ca=/etc/beats/certs/ca.crt
+        -f --fleet-server-es=https://{{ elasticsearch_ca }}:9200
+
+  when: ansible_hostname == beats_fleet_server
