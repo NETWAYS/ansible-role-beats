@@ -6,6 +6,7 @@
 - name: Converge
   hosts: all
   vars:
+    elastic_security: true
     logstash_enable: true
     logstash_security: true
     elastic_stack_full_stack: true

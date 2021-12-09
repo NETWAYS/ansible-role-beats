@@ -1,5 +1,6 @@
 ---
 # defaults file for beats
+beats_security: false
 beats_filebeat: true
 filebeat_output: logstash
 beats_target_hosts:
@@ -12,7 +13,6 @@ beats_loglevel: info
 
 # Use TLS without Elastic X-Pack #
 
-beats_tls: false
 beats_ca_dir: "/opt/ca"
 beats_tls_key: "{{ beats_ca_dir }}/{{ inventory_hostname }}.key"
 beats_tls_cert: "{{ beats_ca_dir }}/{{ inventory_hostname }}.crt"
@@ -38,7 +38,6 @@ filebeat_enable: true
 #  - system
 
 elastic_stack_full_stack: false
-elasticsearch_http_security: false
 
 elastic_ca_dir: /opt/es-ca
 elastic_ca_pass: PleaseChangeMe
