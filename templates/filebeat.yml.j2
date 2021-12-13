@@ -27,7 +27,7 @@ filebeat.inputs:
     type: {{ filebeat_log_inputs[input].multiline.type }}
 {% endif %}
 {% if filebeat_log_inputs[input].multiline.pattern is defined %}
-    pattern: {{ filebeat_log_inputs[input].multiline.pattern }}
+    pattern: '{{ filebeat_log_inputs[input].multiline.pattern }}'
 {% endif %}
 {% if filebeat_log_inputs[input].multiline.negate is defined %}
     negate: {{ filebeat_log_inputs[input].multiline.negate }}
