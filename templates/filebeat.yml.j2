@@ -33,7 +33,7 @@ filebeat.inputs:
     negate: {{ filebeat_log_inputs[input].multiline.negate }}
 {% endif %}
 {% if filebeat_log_inputs[input].multiline.match is defined %}
-    negate: {{ filebeat_log_inputs[input].multiline.match }}
+    match: {{ filebeat_log_inputs[input].multiline.match }}
 {% endif %}
 {% endif %}
 
