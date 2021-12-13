@@ -2,7 +2,6 @@
 # defaults file for beats
 beats_security: false
 beats_filebeat: true
-filebeat_output: logstash
 beats_target_hosts:
   - localhost
 beats_logstash_output_port: 5044
@@ -21,6 +20,7 @@ beats_tls_key_passphrase: ChangeMe
 
 # Filebeat specific #
 
+filebeat_output: logstash
 filebeat_syslog_udp: false
 filebeat_syslog_udp_port: 514
 filebeat_syslog_tcp: false
@@ -38,6 +38,7 @@ filebeat_enable: true
 #  - system
 
 elastic_stack_full_stack: false
+elastic_security: true
 
 elastic_ca_dir: /opt/es-ca
 elastic_ca_pass: PleaseChangeMe
