@@ -8,6 +8,34 @@ filebeat.inputs:
 {% for path in filebeat_log_inputs[input].paths %}
     - {{ path }}
 {% endfor %}
+{% if beats_fields is defined or filebeat_log_inputs[input].fields is defined %}
+  fields:
+{% if beats_fields is defined %}
+{% for field in beats_fields %}
+    {{ field }}
+{% endfor %}
+{% endif %}
+{% if filebeat_log_inputs[input].fields is defined %}
+{% for field in filebeat_log_inputs[input].fields %}
+    {{ field }}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% if filebeat_log_inputs[input].multiline is defined %}
+  multiline:
+{% if filebeat_log_inputs[input].multiline.type is defined %}
+    type: {{ filebeat_log_inputs[input].multiline.type }}
+{% endif %}
+{% if filebeat_log_inputs[input].multiline.pattern is defined %}
+    pattern: '{{ filebeat_log_inputs[input].multiline.pattern }}'
+{% endif %}
+{% if filebeat_log_inputs[input].multiline.negate is defined %}
+    negate: {{ filebeat_log_inputs[input].multiline.negate }}
+{% endif %}
+{% if filebeat_log_inputs[input].multiline.match is defined %}
+    match: {{ filebeat_log_inputs[input].multiline.match }}
+{% endif %}
+{% endif %}
 
 {% endfor %}
 {% endif %}
@@ -29,6 +57,12 @@ filebeat.inputs:
   enabled: true
   max_message_size: 10MiB
   host: "0.0.0.0:514"
+{% if beats_fields is defined %}
+  fields:
+{% for field in beats_fields %}
+    {{ field }}
+{% endfor %}
+{% endif %}
 
 {% endif %}
 {% if filebeat_syslog_udp | bool %}
@@ -36,6 +70,12 @@ filebeat.inputs:
   enabled: true
   max_message_size: 10MiB
   host: "0.0.0.0:514"
+{% if beats_fields is defined %}
+  fields:
+{% for field in beats_fields %}
+    {{ field }}
+{% endfor %}
+{% endif %}
 
 {% endif %}
 filebeat.config.modules:
@@ -44,7 +84,7 @@ filebeat.config.modules:
 setup.template.settings:
   index.number_of_shards: 1
 setup.kibana:
-{% if beats_output == "elasticseach" %}
+{% if filebeat_output == "elasticseach" %}
 output.elasticsearch:
 {% if elasticsearch_http_security | bool %}
 {% if elastic_stack_full_stack | bool %}
@@ -65,12 +105,20 @@ output.elasticsearch:
 {% endif %}
 {% endif %}
 {% endif %}
-{% if beats_output == "logstash" %}
+{% if filebeat_output == "logstash" %}
 output.logstash:
 {% if elastic_stack_full_stack | bool %}
   hosts: [ {% for host in groups['logstash'] %}"{{ host }}:{{ beats_logstash_output_port }}"{% if not loop.last %},{% endif %}{% endfor %}]
 {% else %}
   hosts: [ {% for host in beats_target_hosts %}"{{ host }}:{{ beats_logstash_output_port }}"{% if not loop.last %},{% endif %}{% endfor %}]
+{% endif %}
+{% if beats_tls | bool %}
+  ssl.enabled: true
+  ssl.certificate_authorities: ["{{ beats_tls_cacert }}"]
+  ssl.verification_mode: full
+  ssl.key: {{ beats_tls_key }}
+  ssl.key_passphrase: {{ beats_tls_key_passphrase }}
+  ssl.certificate: {{ beats_tls_cert }}
 {% endif %}
 {% endif %}
 
