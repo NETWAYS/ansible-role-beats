@@ -20,3 +20,6 @@
 
 - import_tasks: filebeat.yml
   when: beats_filebeat | bool
+
+- import_tasks: auditbeat.yml
+  when: beats_auditbeat | bool

@@ -15,6 +15,7 @@ You need to have Filebeat available in your software repositories. We provide a 
 Role Variables
 --------------
 
+* *beats_filebeat*: Install and manage filebeat (Default: `true`)
 * *filebeat_enable*: Automatically start Filebeat (Default: `true`)
 * *filebeat_output*: Set to `logstash` or `elasticsearch`. (default: `logstash`)
 * *filebeat_syslog_udp*: Use UDP Syslog input (Default: `false`)
@@ -49,6 +50,11 @@ filebeat_log_inputs:
       negate: false
       match: after
 ```
+
+* *beats_auditbeat*: Install and manage filebeat (Default: `false`)
+* *auditbeat_output*: Output for Auditbeat Set to `logstash` or `elasticsearch`. (default: `elasticsearch`)
+* *auditbeat_enable*: Automatically start Auditbeat (Default: `true`)
+* *auditbeat_setup*: Run Auditbeat Setup (Default: `true`) (Only works with Elasticsearch output)
 
 * *beats_target_hosts*: Only use when this role is used standalone. When used in combination with our other roles, the target hosts will be determined automatically. Use a YAML list. (default: `- localhost`)
 * *beats_elasticsearch_output_port*: Port of Elasticsearch to send events to (Default: `9200`)
