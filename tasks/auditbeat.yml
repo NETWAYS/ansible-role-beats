@@ -40,7 +40,7 @@
     var: debug.stdout
 
 - name: DEBUG 3
-  shell: systemctl start auditbeat || journalctl -xe
+  shell: systemctl start auditbeat || cat /var/log/beats/auditbeat.log/auditbeat
   register: auditbeatstart
   failed_when: false
   changed_when: false
