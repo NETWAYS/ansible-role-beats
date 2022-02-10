@@ -50,6 +50,7 @@ filebeat_log_inputs:
       match: after
 ```
 
+* *beats_metricbeat*: Enable installation and management of Metricbeat (Default: `false`)
 * *beats_target_hosts*: Only use when this role is used standalone. When used in combination with our other roles, the target hosts will be determined automatically. Use a YAML list. (default: `- localhost`)
 * *beats_elasticsearch_output_port*: Port of Elasticsearch to send events to (Default: `9200`)
 * *beats_logstash_output_port*: Port of Logstash to send events to (Default: `5400`)
