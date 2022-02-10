@@ -39,6 +39,25 @@
   with_items: "{{ filebeat_modules }}"
   when: filebeat_modules is defined
 
+- name: DEBUG
+  command: cat /etc/filebeat/filebeat.yml
+  register: debug
+  changed_when: false
+
+- name: DEBUG 2
+  debug:
+    var: debug.stdout
+
+- name: DEBUG 3
+  shell: systemctl start filebeat || journalctl -xe
+  register: filebeatstart
+  failed_when: false
+  changed_when: false
+
+- name: DEBUG 4
+  debug:
+    var: filebeatstart.stdout
+
 - name: Start Filebeat
   service:
     name: filebeat
