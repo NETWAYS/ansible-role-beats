@@ -1,8 +1,8 @@
 ---
 # defaults file for beats
 beats_filebeat: true
-beats_metricbeat: true
-beats_output: logstash
+beats_metricbeat: false
+filebeat_output: logstash
 beats_target_hosts:
   - localhost
 beats_logstash_output_port: 5044
@@ -34,6 +34,7 @@ filebeat_log_inputs:
       - /var/log/messages
 filebeat_enable: true
 
+filebeat_mysql_slowlog_input: false
 #filebeat_modules:
 #  - system
 
@@ -45,6 +46,7 @@ metricbeat_modules:
   - system
 
 elastic_stack_full_stack: false
+elastic_variant: elastic
 elasticsearch_http_security: false
 
 elastic_ca_dir: /opt/es-ca

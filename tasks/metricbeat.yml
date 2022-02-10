@@ -23,13 +23,15 @@
 - name: Enable Ingest Pipelines
   command: >
     metricbeat setup &&
-    touch /etc/metricbeat/pipelines_created
+    metricbeat version > /etc/metricbeat/pipelines_created
   args:
     creates: "/etc/metricbeat/pipelines_created"
   notify:
     - Restart Metricbeat
   with_items: "{{ metricbeat_modules }}"
-  when: metricbeat_modules is defined
+  when:
+    - metricbeat_modules is defined
+    - metricbeat_output == "elasticsearch"
 
 - name: Start Metricbeat
   service:
