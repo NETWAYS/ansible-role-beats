@@ -30,30 +30,9 @@
     - auditbeat_setup | bool
     - auditbeat_output == "elasticsearch"
 
-- name: DEBUG
-  command: cat /etc/auditbeat/auditbeat.yml
-  register: debug
-  changed_when: false
-
-- name: DEBUG 2
-  debug:
-    var: debug.stdout
-
 - name: Start Auditbeat
   service:
     name: auditbeat
     state: started
     enabled: true
-  failed_when: false
   when: auditbeat_enable | bool
-
-- name: DEBUG 3
-  shell: >
-    cat /var/log/beats/auditbeat.log/auditbeat
-  register: auditbeatstart
-  failed_when: false
-  changed_when: false
-
-- name: DEBUG 4
-  debug:
-    var: auditbeatstart.stdout

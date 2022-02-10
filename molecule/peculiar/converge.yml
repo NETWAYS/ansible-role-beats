@@ -19,6 +19,7 @@
     filebeat_mysql_slowlog_input: true
     beats_auditbeat: true
     auditbeat_output: logstash
+    auditbeat_enable: false # can't run on GitHub because of permissions
     beats_metricbeat: true
     metricbeat_output: logstash
   tasks:
