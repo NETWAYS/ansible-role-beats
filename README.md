@@ -56,6 +56,11 @@ filebeat_log_inputs:
 * *auditbeat_enable*: Automatically start Auditbeat (Default: `true`)
 * *auditbeat_setup*: Run Auditbeat Setup (Default: `true`) (Only works with Elasticsearch output)
 
+* *beats_metricbeat*: Enable installation and management of Metricbeat (Default: `false`)
+* *metricbeat_enable*: Start Metricbeat automatically (Default: `true`)
+* *metricbeat_output*: Set to `logstash` or `elasticsearch`. (default: `elasticsearch`)
+* *metricbeat_modules*: List of modules to enable. (Default: `- system`)
+
 * *beats_target_hosts*: Only use when this role is used standalone. When used in combination with our other roles, the target hosts will be determined automatically. Use a YAML list. (default: `- localhost`)
 * *beats_elasticsearch_output_port*: Port of Elasticsearch to send events to (Default: `9200`)
 * *beats_logstash_output_port*: Port of Logstash to send events to (Default: `5400`)
