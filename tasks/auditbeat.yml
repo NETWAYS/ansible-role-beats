@@ -31,7 +31,7 @@
     - auditbeat_output == "elasticsearch"
 
 - name: DEBUG
-  command: cat /etc/filebeat/filebeat.yml
+  command: cat /etc/auditbeat/auditbeat.yml
   register: debug
   changed_when: false
 
