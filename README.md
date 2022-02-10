@@ -49,6 +49,14 @@ filebeat_log_inputs:
       negate: false
       match: after
 ```
+* *filebeat_journald*: Enable collection of JournalD logs (default: `false`) - available since Filebeat 7.16
+* *filebeat_journald_inputs*: List of journald inputs. Use for different filters on events. You can add a list of `include_matches` entries for filtering.
+Default of `filebeat_journald_inputs:
+```
+filebeat_journald_inputs:
+  everything:
+    id: everything
+```
 
 * *beats_target_hosts*: Only use when this role is used standalone. When used in combination with our other roles, the target hosts will be determined automatically. Use a YAML list. (default: `- localhost`)
 * *beats_elasticsearch_output_port*: Port of Elasticsearch to send events to (Default: `9200`)
