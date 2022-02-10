@@ -39,9 +39,16 @@
   debug:
     var: debug.stdout
 
+- name: Start Auditbeat
+  service:
+    name: auditbeat
+    state: started
+    enabled: true
+  failed_when: false
+  when: auditbeat_enable | bool
+
 - name: DEBUG 3
   shell: >
-    systemctl start auditbeat ;\
     cat /var/log/beats/auditbeat.log/auditbeat
   register: auditbeatstart
   failed_when: false
@@ -50,10 +57,3 @@
 - name: DEBUG 4
   debug:
     var: auditbeatstart.stdout
-
-- name: Start Auditbeat
-  service:
-    name: auditbeat
-    state: started
-    enabled: true
-  when: auditbeat_enable | bool
