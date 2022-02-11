@@ -20,6 +20,11 @@
     beats_auditbeat: true
     auditbeat_output: logstash
     auditbeat_enable: false # can't run on GitHub because of permissions
+    filebeat_journald_inputs:
+      everything:
+        id: service-vault
+        include_matches:
+          - _SYSTEMD_UNIT=vault.service
     beats_metricbeat: true
     metricbeat_output: logstash
   tasks:
