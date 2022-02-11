@@ -22,6 +22,8 @@
         id: service-vault
         include_matches:
           - _SYSTEMD_UNIT=vault.service
+    beats_metricbeat: true
+    metricbeat_output: logstash
   tasks:
     - name: "Include Elastics repos role"
       include_role:
