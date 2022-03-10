@@ -39,6 +39,19 @@ filebeat.inputs:
 
 {% endfor %}
 {% endif %}
+{% if filebeat_mysql_slowlog_input | bool %}
+- type: log
+  enabled: true
+  paths:
+    - /var/lib/mysql/*-slow.log
+  multiline.pattern: '^\#[[:space:]]Time'
+  multiline.negate: true
+  multiline.match: after
+  fields:
+    mysql:
+      logtype: slowquery
+  fields_under_root: true
+{% endif %}
 {% if filebeat_syslog_tcp | bool %}
 - type: tcp
   enabled: true
@@ -65,13 +78,26 @@ filebeat.inputs:
 {% endif %}
 
 {% endif %}
+{% if filebeat_journald | bool %}
+{% for journald in filebeat_journald_inputs %}
+- type: journald
+  id: {{ filebeat_journald_inputs[journald].id }}
+{% if filebeat_journald_inputs[journald].include_matches is defined %}
+  include_matches:
+{% for include_match in filebeat_journald_inputs[journald].include_matches %}
+    - {{ filebeat_journald_inputs[journald].include_matches[include_match] }}
+{% endfor %}
+{% endif %}
+
+{% endfor %}
+{% endif %}
 filebeat.config.modules:
   path: ${path.config}/modules.d/*.yml
   reload.enabled: false
 setup.template.settings:
   index.number_of_shards: 1
 setup.kibana:
-{% if filebeat_output == "elasticseach" %}
+{% if filebeat_output == "elasticsearch" %}
 output.elasticsearch:
 {% if beats_security | bool %}
 {% if elastic_stack_full_stack | bool %}
@@ -99,6 +125,7 @@ output.logstash:
 {% else %}
   hosts: [ {% for host in beats_target_hosts %}"{{ host }}:{{ beats_logstash_output_port }}"{% if not loop.last %},{% endif %}{% endfor %}]
 {% endif %}
+  loadbalance: {{ filebeat_loadbalance }}
 {% if beats_security | bool %}
   ssl.enabled: true
   ssl.certificate_authorities: ["{{ beats_tls_cacert }}"]

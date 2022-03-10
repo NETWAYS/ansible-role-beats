@@ -15,6 +15,7 @@ You need to have Filebeat available in your software repositories. We provide a 
 Role Variables
 --------------
 
+* *beats_filebeat*: Install and manage filebeat (Default: `true`)
 * *filebeat_enable*: Automatically start Filebeat (Default: `true`)
 * *filebeat_output*: Set to `logstash` or `elasticsearch`. (default: `logstash`)
 * *filebeat_syslog_udp*: Use UDP Syslog input (Default: `false`)
@@ -22,6 +23,7 @@ Role Variables
 * *filebeat_syslog_tcp*: Use TCP Syslog input (Default: `false`)
 * *filebeat_syslog_tcp_port*: Port of TCP Syslog input (Default: `514`)
 * *filebeat_log_input*: Enable Logfile reading (Default: `true`)
+* *filebeat_mysql_slowlog_input*: Enable MySQL/MariaDB slow query log collection incl. multiline (Default: `false`)
 * *filebeat_log_inputs*: Logfiles to read (Default: see below)
 
 Default of `filebeat_log_inputs`
@@ -48,6 +50,27 @@ filebeat_log_inputs:
       negate: false
       match: after
 ```
+* *filebeat_journald*: Enable collection of JournalD logs (default: `false`) - available since Filebeat 7.16
+* *filebeat_journald_inputs*: List of journald inputs. Use for different filters on events. You can add a list of `include_matches` entries for filtering.
+Default of `filebeat_journald_inputs:
+```
+filebeat_journald_inputs:
+  everything:
+    id: everything
+```
+* *filebeat_loadbalance*: Enable loadbalancing for Filebeats Logstash output (default: `true`)
+
+* *beats_auditbeat*: Install and manage filebeat (Default: `false`)
+* *auditbeat_output*: Output for Auditbeat Set to `logstash` or `elasticsearch`. (default: `elasticsearch`)
+* *auditbeat_enable*: Automatically start Auditbeat (Default: `true`)
+* *auditbeat_setup*: Run Auditbeat Setup (Default: `true`) (Only works with Elasticsearch output)
+* *auditbeat_loadbalance*: Enable loadbalancing for Auditbeats Logstash output (default: `true`)
+
+* *beats_metricbeat*: Enable installation and management of Metricbeat (Default: `false`)
+* *metricbeat_enable*: Start Metricbeat automatically (Default: `true`)
+* *metricbeat_output*: Set to `logstash` or `elasticsearch`. (default: `elasticsearch`)
+* *metricbeat_modules*: List of modules to enable. (Default: `- system`)
+* *metricbeat_loadbalance*: Enable loadbalancing for Metricbeats Logstash output (default: `true`)
 
 * *beats_security*: Activate TLS for connections to targets. Can either be use with our other roles and `elastic_stack_full_stack` to automatically create certificates or `beats_tls*` variables for custom certificates. (default: `false`)
 * *beats_target_hosts*: Only use when this role is used standalone. When used in combination with our other roles, the target hosts will be determined automatically. Use a YAML list. (default: `- localhost`)
@@ -61,6 +84,7 @@ filebeat_log_inputs:
 The following variables only apply if you use this role together with our other Elastic Stack roles.
 
 * *elastic_stack_full_stack*: Use `ansible-role-elasticsearch` as well (default: `false`)
+* *elastic_variant*: Define which variant of elastic stack to use. (default: `elastic`)
 * *elastic_ca_dir*: Directory where on the Elasticsearch CA host certificates are stored. This is only useful in connection with out other Elastic Stack related roles. (default: `/opt/es-ca`)
 * *elastic_ca_pass*: Password for Elasticsearch CA (default: `PleaseChangeMe`)
 * *elastic_initial_passwords*: Path to file with initical elasticsearch passwords (default: `/usr/share/elasticsearch/initial_passwords`)
