@@ -16,6 +16,21 @@
   tags:
     - certificates
 
+- name: Set beats_ca_dir if whole stack is used
+  set_fact:
+    beats_ca_dir: "/etc/beats/certs"
+  when:
+    - elastic_stack_full_stack | bool
+    - elastic_security | bool
+    - beats_ca_dir is undefined
+
+- name: Set beats_ca_dir if whole stack is not used
+  set_fact:
+    beats_ca_dir: "/opt/ca"
+  when:
+    - beats_security | bool
+    - beats_ca_dir is undefined
+
 - name: Create directory for logging if file logging is activated
   file:
     path: "{{ beats_logpath }}"

@@ -33,7 +33,7 @@
 - name: Copy the certificate to actual node
   copy:
     src: "/tmp/{{ ansible_hostname }}.p12"
-    dest: "/etc/beats/certs/cert.p12"
+    dest: "/etc/beats/certs/{{ inventory_hostname }}.p12"
     owner: root
     group: root
     mode: 0640
