@@ -12,6 +12,8 @@
     beats_metricbeat: false
     beats_agent: true
     beats_fleet_server: beats-agent
+    elasticsearch_enable: false
+    elasticsearch_security: false
   tasks:
     - name: "Include Elastics repos role"
       include_role:
