@@ -57,5 +57,6 @@
         "--fleet-server-service-token={{ beats_fleet_token }}"
         --fleet-server-es-ca=/etc/beats/certs/ca.crt
         -f --fleet-server-es=https://{{ elasticsearch_ca }}:9200
+      changed_when: false
 
   when: ansible_hostname == beats_fleet_server
