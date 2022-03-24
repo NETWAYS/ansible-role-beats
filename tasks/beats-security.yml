@@ -1,4 +1,9 @@
 ---
+
+- name: Install unzip for certificate handling
+  package:
+    name: unzip
+
 - name: create certificate directory
   file:
     path: /etc/beats/certs
