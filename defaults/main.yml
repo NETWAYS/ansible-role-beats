@@ -1,7 +1,9 @@
 ---
 # defaults file for beats
+beats_security: false
 beats_filebeat: true
-filebeat_output: logstash
+beats_auditbeat: false
+beats_metricbeat: false
 beats_target_hosts:
   - localhost
 beats_logstash_output_port: 5044
@@ -12,8 +14,6 @@ beats_loglevel: info
 
 # Use TLS without Elastic X-Pack #
 
-beats_tls: false
-beats_ca_dir: "/opt/ca"
 beats_tls_key: "{{ beats_ca_dir }}/{{ inventory_hostname }}.key"
 beats_tls_cert: "{{ beats_ca_dir }}/{{ inventory_hostname }}.crt"
 beats_tls_cacert: "{{ beats_ca_dir }}/ca.crt"
@@ -21,6 +21,7 @@ beats_tls_key_passphrase: ChangeMe
 
 # Filebeat specific #
 
+filebeat_output: logstash
 filebeat_syslog_udp: false
 filebeat_syslog_udp_port: 514
 filebeat_syslog_tcp: false
@@ -32,13 +33,30 @@ filebeat_log_inputs:
     paths:
       - /var/log/messages
 filebeat_enable: true
+filebeat_journald: false
+filebeat_journald_inputs:
+  everything:
+    id: everything
+filebeat_loadbalance: true
 
-
+filebeat_mysql_slowlog_input: false
 #filebeat_modules:
 #  - system
 
+auditbeat_setup: true
+auditbeat_enable: true
+auditbeat_output: elasticsearch
+auditbeat_loadbalance: true
+
+metricbeat_enable: true
+metricbeat_output: elasticsearch
+metricbeat_modules:
+  - system
+metricbeat_loadbalance: true
+
 elastic_stack_full_stack: false
-elasticsearch_http_security: false
+elastic_security: true
+elastic_variant: elastic
 
 elastic_ca_dir: /opt/es-ca
 elastic_ca_pass: PleaseChangeMe
