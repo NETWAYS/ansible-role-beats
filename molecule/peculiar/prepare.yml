@@ -6,13 +6,14 @@
     - name: Install packages for Debian
       apt:
         name:
-          - git
           - gpg
           - procps
           - curl
         update_cache: yes
       when: ansible_os_family == "Debian"
 
-    - name: Install unzip
+    - name: Install common packages
       package:
-        name: unzip
+        name:
+          - unzip
+          - git
