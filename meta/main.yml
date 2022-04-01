@@ -9,9 +9,11 @@ galaxy_info:
   platforms:
     - name: EL
       version:
-        - 6
         - 7
         - 8
+    - name: Debian
+      version:
+        - 11
   galaxy_tags:
     - elk
     - beats
