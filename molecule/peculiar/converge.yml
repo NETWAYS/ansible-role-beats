@@ -42,6 +42,12 @@
     - name: "Include Elastics repos role"
       include_role:
         name: elastic-repos
+
+    - name: Refresh apt cache
+      apt:
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
     - name: "Include Beats"
       include_role:
         name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
