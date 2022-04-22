@@ -11,7 +11,7 @@
     debug:
       var: filebeat_version.stdout_lines
 
-  - name: Fail if Filebeat has the wrong version
-    fail:
-      msg: "Filebeat has the wrong version"
-    when: filebeat_version.stdout_lines.find('7.16.1') == -1
+  #- name: Fail if Filebeat has the wrong version
+  #  fail:
+  #    msg: "Filebeat has the wrong version"
+  #  when: filebeat_version.stdout_lines.find('7.16.1') == -1
