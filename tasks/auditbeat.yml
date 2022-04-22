@@ -7,6 +7,8 @@
 - name: Install Auditbeat specific version
   package:
     name: "auditbeat{{ beats_auditbeat_version }}"
+  notify:
+    - Restart Auditbeat
   when:
     - beats_auditbeat_version is defined
     - beats_auditbeat_version != "latest"
@@ -15,6 +17,8 @@
   package:
     name: auditbeat
     state: latest
+  notify:
+    - Restart Auditbeat
   when:
     - beats_auditbeat_version is defined
     - beats_auditbeat_version == "latest"

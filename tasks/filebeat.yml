@@ -7,6 +7,8 @@
 - name: Install Filebeat specific version
   package:
     name: "filebeat{{ beats_filebeat_version }}"
+  notify:
+    - Restart Filebeat
   when:
     - beats_filebeat_version is defined
     - beats_filebeat_version != "latest"
@@ -15,6 +17,8 @@
   package:
     name: filebeat
     state: latest
+  notify:
+    - Restart Filebeat
   when:
     - beats_filebeat_version is defined
     - beats_filebeat_version == "latest"
