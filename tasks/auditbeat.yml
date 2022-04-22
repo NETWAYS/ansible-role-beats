@@ -2,6 +2,22 @@
 - name: Install Auditbeat
   package:
     name: auditbeat
+  when: beats_auditbeat_version is not defined
+
+- name: Install Auditbeat specific version
+  package:
+    name: "auditbeat{{ beats_auditbeat_version }}"
+  when:
+    - beats_auditbeat_version is defined
+    - beats_auditbeat_version != "latest"
+
+- name: Install Auditbeat latest version
+  package:
+    name: auditbeat
+    state: latest
+  when:
+    - beats_auditbeat_version is defined
+    - beats_auditbeat_version == "latest"
 
 - name: Configure Auditbeat
   template:
