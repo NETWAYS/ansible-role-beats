@@ -29,15 +29,15 @@
     beats_metricbeat: true
     metricbeat_output: logstash
   tasks:
-  - name: Set Filebeat version on RedHat
-    set_fact:
-      beats_filebeat_version: "-7.12.1"
-    when: ansible_os_family == "RedHat"
+    - name: Set Filebeat version on RedHat
+      set_fact:
+        beats_filebeat_version: "-7.12.1"
+      when: ansible_os_family == "RedHat"
 
-  - name: Set Filebeat version on Debian
-    set_fact:
-      beats_filebeat_version: "=1:7.12.1-1"
-    when: ansible_os_family == "Debian"
+    - name: Set Filebeat version on Debian
+      set_fact:
+        beats_filebeat_version: "=1:7.12.1-1"
+      when: ansible_os_family == "Debian"
 
     - name: "Include Elastics repos role"
       include_role:
