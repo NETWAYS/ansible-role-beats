@@ -31,12 +31,12 @@
   tasks:
     - name: Set Filebeat version on RedHat
       set_fact:
-        beats_filebeat_version: "-7.12.1"
+        beats_filebeat_version: "-7.16.1"
       when: ansible_os_family == "RedHat"
 
     - name: Set Filebeat version on Debian
       set_fact:
-        beats_filebeat_version: "=1:7.12.1-1"
+        beats_filebeat_version: "=1:7.16.1-1"
       when: ansible_os_family == "Debian"
 
     - name: "Include Elastics repos role"

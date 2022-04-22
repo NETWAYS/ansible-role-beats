@@ -9,4 +9,4 @@
   - name: Fail if Filebeat has the wrong version
     fail:
       msg: "Filebeat has the wrong version"
-    when: not "filebeat version 7.12.1" in filebeat_version.stdout_lines
+    when: not "filebeat version 7.16.1" in filebeat_version.stdout_lines
