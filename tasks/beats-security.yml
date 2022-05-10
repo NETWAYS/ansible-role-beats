@@ -3,6 +3,7 @@
 - name: Install unzip for certificate handling
   package:
     name: unzip
+  when: beats_manage_unzip | bool
 
 - name: create certificate directory
   file:
