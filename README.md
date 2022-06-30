@@ -20,6 +20,7 @@ Role Variables
 * *beats_fleet_server*: The inventory hostname (and DNS resolvable name) of the fleet server for this host
 
 * *beats_filebeat*: Install and manage filebeat (Default: `true`)
+* *beats_filebeat_version*: Install specific version (Default: none. Possible values: e.g. ``-7.10.1` for RedHat compatible systems or `=1:7.10.1-1` for Debian compatible systems or `latest`)
 * *filebeat_enable*: Automatically start Filebeat (Default: `true`)
 * *filebeat_output*: Set to `logstash` or `elasticsearch`. (default: `logstash`)
 * *filebeat_syslog_udp*: Use UDP Syslog input (Default: `false`)
@@ -65,12 +66,14 @@ filebeat_journald_inputs:
 * *filebeat_loadbalance*: Enable loadbalancing for Filebeats Logstash output (default: `true`)
 
 * *beats_auditbeat*: Install and manage filebeat (Default: `false`)
+* *beats_auditbeat_version*: Install specific version (Default: none. Possible values: e.g. ``-7.10.1` for RedHat compatible systems or `=1:7.10.1-1` for Debian compatible systems or `latest`)
 * *auditbeat_output*: Output for Auditbeat Set to `logstash` or `elasticsearch`. (default: `elasticsearch`)
 * *auditbeat_enable*: Automatically start Auditbeat (Default: `true`)
 * *auditbeat_setup*: Run Auditbeat Setup (Default: `true`) (Only works with Elasticsearch output)
 * *auditbeat_loadbalance*: Enable loadbalancing for Auditbeats Logstash output (default: `true`)
 
 * *beats_metricbeat*: Enable installation and management of Metricbeat (Default: `false`)
+* *beats_metricbeat_version*: Install specific version (Default: none. Possible values: e.g. ``-7.10.1` for RedHat compatible systems or `=1:7.10.1-1` for Debian compatible systems or `latest`)
 * *metricbeat_enable*: Start Metricbeat automatically (Default: `true`)
 * *metricbeat_output*: Set to `logstash` or `elasticsearch`. (default: `elasticsearch`)
 * *metricbeat_modules*: List of modules to enable. (Default: `- system`)
@@ -84,6 +87,7 @@ filebeat_journald_inputs:
 * *beats_loglevel*: Level of logging (for all beats) (Default: `info`)
 * *beats_logpath*: If logging to file, where to put logfiles (Default: `/var/log/beats`)
 * *beats_fields*: Fields that are added to every input in the configuration
+* *beats_manage_unzip*: Install `unzip` via package manager (Default: `true`)
 
 The following variables only apply if you use this role together with our other Elastic Stack roles.
 
