@@ -7,13 +7,10 @@
   hosts: all
   vars:
     elastic_stack_full_stack: true
-    elasticsearch_http_security: true
     beats_filebeat: false
     beats_metricbeat: false
     beats_agent: true
     beats_fleet_server: beats-agent
-    elasticsearch_enable: false
-    elasticsearch_security: false
   tasks:
     - name: "Include Elastics repos role"
       include_role:
