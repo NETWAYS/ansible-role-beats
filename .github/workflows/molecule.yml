@@ -18,7 +18,10 @@ jobs:
         distro: [centos7]
         # disabling other distros due to bug in Elasticsearch
         #distro: [centos7, debian10, rockylinux8]
-        scenario: [default, peculiar, agent, full_stack]
+        scenario: [default, peculiar, agent]
+        # See https://github.com/NETWAYS/ansible-role-logstash/issues/139
+        # before re-enabling full_stack
+        #scenario: [default, peculiar, agent, full_stack]
 
     steps:
       - name: Check out code
