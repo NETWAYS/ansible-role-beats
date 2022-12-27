@@ -15,7 +15,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        distro: [debian11, rockylinux8, ubuntu2204]
+        distro: [debian11, ubuntu2204]
         scenario: [default, full_stack, peculiar]
 
     steps:
