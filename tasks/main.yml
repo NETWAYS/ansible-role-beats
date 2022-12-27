@@ -67,5 +67,6 @@
   when: beats_auditbeat | bool
 
 - name: Import Metricbeat tasks
+
   import_tasks: metricbeat.yml
   when: beats_metricbeat | bool
