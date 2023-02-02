@@ -1,5 +1,8 @@
+This repository is deprecated! Please use our new [Ansible Collection Elastic Stack](https://github.com/NETWAYS/ansible-collection-elasticstack) instead.
+=========================================================================================================================================================
+
 Ansible Role: Beats
-=========
+
 
 [![CI](https://github.com/NETWAYS/ansible-role-beats/workflows/Molecule%20Test/badge.svg?event=push)](https://github.com/NETWAYS/ansible-role-beats/workflows/Molecule%20Test/badge.svg)
 
